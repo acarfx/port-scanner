@@ -39,10 +39,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-app.get('/api/process', async (req, res) => {
+app.get('/api/process/:ip', async (req, res) => {
      let CheckPorts =  Object.keys(Ports).map((port) => parseInt(port));
   
-     scanPorts("acarfx.com.tr",  CheckPorts)
+     scanPorts(req.params.ip,  CheckPorts)
     
       .then((openPorts) => {
         res.status(200).send({
